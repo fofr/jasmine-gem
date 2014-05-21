@@ -8,4 +8,13 @@
 #   config.boot_files = lambda { ['/absolute/path/to/boot_dir/file.js'] }
 #end
 #
-
+#Example: using a different phantomjs binary and avoiding a download.
+#Jasmine.configure do |config|
+#
+#   # Use the phantomjs already on your path
+#   config.phantom_js_path = 'phantomjs'
+#
+#   # Specify an absolute path
+#   config.phantom_js_path = '/absolute/path/to/phantomjs'
+#end
+#

@@ -141,6 +141,14 @@ describe Jasmine::Configuration do
     end
   end
 
+  describe 'phantom js path' do
+    it 'returns value if set' do
+      config = Jasmine::Configuration.new()
+      config.phantom_js_path = 'phantomjs'
+      config.phantom_js_path.should == 'phantomjs'
+    end
+  end
+
   describe 'jasmine ports' do
     it 'returns new CI port and caches return value' do
       config = Jasmine::Configuration.new()

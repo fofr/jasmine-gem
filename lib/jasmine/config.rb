@@ -73,7 +73,7 @@ module Jasmine
       })
     end
 
-    @config.runner = lambda { |formatter, jasmine_server_url| Jasmine::Runners::PhantomJs.new(formatter, jasmine_server_url, 50) }
+    @config.runner = lambda { |formatter, jasmine_server_url| Jasmine::Runners::PhantomJs.new(formatter, jasmine_server_url, 50, @config.phantom_js_path) }
   end
 
   def self.config

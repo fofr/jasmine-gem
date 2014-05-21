@@ -3,14 +3,17 @@ require 'phantomjs'
 module Jasmine
   module Runners
     class PhantomJs
-      def initialize(formatter, jasmine_server_url, result_batch_size)
+      def initialize(formatter, jasmine_server_url, result_batch_size, phantom_js_path)
         @formatter = formatter
         @jasmine_server_url = jasmine_server_url
         @result_batch_size = result_batch_size
+
+        # Phantomjs.path may download PhantomJS automatically if unavailable or versions don't match
+        @phantom_js_path = phantom_js_path || Phantomjs.path
       end
 
       def run
-        command = "#{Phantomjs.path} '#{File.join(File.dirname(__FILE__), 'phantom_jasmine_run.js')}' #{jasmine_server_url} #{result_batch_size}"
+        command = "#{phantom_js_path} '#{File.join(File.dirname(__FILE__), 'phantom_jasmine_run.js')}' #{jasmine_server_url} #{result_batch_size}"
         IO.popen(command) do |output|
           output.each do |line|
             if line =~ /^jasmine_result/
@@ -29,7 +32,7 @@ module Jasmine
       end
 
       private
-      attr_reader :formatter, :jasmine_server_url, :result_batch_size
+      attr_reader :formatter, :jasmine_server_url, :result_batch_size, :phantom_js_path
     end
   end
 end
