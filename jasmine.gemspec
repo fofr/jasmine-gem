@@ -36,5 +36,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'jasmine-core', '~> 2.0.0'
   s.add_dependency 'rack', '>= 1.2.1'
   s.add_dependency 'rake'
-  s.add_dependency 'phantomjs'
 end

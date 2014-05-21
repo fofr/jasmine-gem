@@ -1,5 +1,3 @@
-require 'phantomjs'
-
 module Jasmine
   module Runners
     class PhantomJs
@@ -10,7 +8,8 @@ module Jasmine
       end
 
       def run
-        command = "#{Phantomjs.path} '#{File.join(File.dirname(__FILE__), 'phantom_jasmine_run.js')}' #{jasmine_server_url} #{result_batch_size}"
+        command = "phantomjs '#{File.join(File.dirname(__FILE__), 'phantom_jasmine_run.js')}' #{jasmine_server_url} #{result_batch_size}"
+        puts command
         IO.popen(command) do |output|
           output.each do |line|
             if line =~ /^jasmine_result/
@@ -33,4 +32,3 @@ module Jasmine
     end
   end
 end
-
